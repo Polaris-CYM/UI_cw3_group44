@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
 
 
     QScrollArea *scrollArea = new QScrollArea();
-
+    scrollArea->setMaximumWidth(240);
 
     scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
         scrollArea->setWidgetResizable( true );
