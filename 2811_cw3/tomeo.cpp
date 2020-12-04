@@ -29,6 +29,7 @@
 #include "the_button.h"
 #include <QtGui>
 #include <QtWidgets/QScrollArea>
+#include <QVBoxLayout>
 
 using namespace std;
 
@@ -116,16 +117,20 @@ int main(int argc, char *argv[]) {
     // a row of buttons
     QWidget *buttonWidget = new QWidget();
 
+
     QScrollArea *scrollArea = new QScrollArea();
 
 
     scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
         scrollArea->setWidgetResizable( true );
-     scrollArea->setGeometry( 100, 100, 800, 680 );
-     QVBoxLayout *top = new QVBoxLayout;
-    top->addWidget(scrollArea);
+        scrollArea->setWidget(buttonWidget);
+
+     QHBoxLayout *top = new QHBoxLayout;
+
+
     top->addWidget(videoWidget);
-    top->addWidget(buttonWidget);
+    top->addWidget(scrollArea);
+
 
     // a list of the buttons
     vector<TheButton*> buttons;
@@ -140,7 +145,7 @@ int main(int argc, char *argv[]) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
-        top->addWidget(button);
+    //       top->addWidget(button);
         button->init(&videos.at(i));
     }
 
@@ -151,33 +156,16 @@ int main(int argc, char *argv[]) {
     QWidget window;
 
 
-//    QScrollArea *scrollArea = new QScrollArea();
-
-//    scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
-//        scrollArea->setWidgetResizable( true );
-//     scrollArea->setGeometry( 100, 100, 800, 680 );
-//     QVBoxLayout *top = new QVBoxLayout;
-//    top->addWidget(scrollArea);
-//    top->addWidget(videoWidget);
-//    top->addWidget(buttonWidget);
-
-
-
-//        QWidget *widget = new QWidget();
- //           scrollArea->setWidget( widget );
-    //            widget->setLayout( layout );
-
-   // scrollArea->setWidgetResizable( true );
- //   QVBoxLayout *top = new QVBoxLayout();
     window.setLayout(top);
     window.setWindowTitle("tomeo");
     window.setMinimumSize(800, 680);
 
     // add the video and the buttons to the top level widget
 
-  //  top->addWidget(buttonWidget);
+   // top->addWidget(buttonWidget);
 
     // showtime!
+
     window.show();
 
     // wait for the app to terminate

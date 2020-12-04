@@ -1612,7 +1612,8 @@ tomeo.o: ../2811_cw3/tomeo.cpp /home/csunix/linux/apps/install/qt/5.13.0/5.13.0/
 		/home/csunix/linux/apps/install/qt/5.13.0/5.13.0/gcc_64/include/QtWidgets/QScrollArea \
 		/home/csunix/linux/apps/install/qt/5.13.0/5.13.0/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/csunix/linux/apps/install/qt/5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/home/csunix/linux/apps/install/qt/5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h
+		/home/csunix/linux/apps/install/qt/5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/csunix/linux/apps/install/qt/5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tomeo.o ../2811_cw3/tomeo.cpp
 
 moc_the_button.o: moc_the_button.cpp 
