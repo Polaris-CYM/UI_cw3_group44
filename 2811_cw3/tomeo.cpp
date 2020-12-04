@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
 
     scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
         scrollArea->setWidgetResizable( true );
-        scrollArea->setWidget(buttonWidget);
+    //    scrollArea->setWidget(buttonWidget);
 
      QHBoxLayout *top = new QHBoxLayout;
 
@@ -135,7 +135,7 @@ int main(int argc, char *argv[]) {
     // a list of the buttons
     vector<TheButton*> buttons;
     // the buttons are arranged horizontally
-  //  QHBoxLayout *layout = new QHBoxLayout();
+  //  QVBoxLayout *layout = new QVBoxLayout();
   //  buttonWidget->setLayout(layout);
 
 
@@ -145,12 +145,17 @@ int main(int argc, char *argv[]) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
-    //       top->addWidget(button);
+        scrollArea->setWidget(button);
+
         button->init(&videos.at(i));
+
     }
+
+   // scrollArea->setWidget(button);
 
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
+    //scrollArea->setWidget(button);
 
     // create the main window and layout
     QWidget window;
