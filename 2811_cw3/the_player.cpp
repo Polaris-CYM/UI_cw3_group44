@@ -24,7 +24,7 @@ void ThePlayer::shuffle() {
 void ThePlayer::playStateChanged (QMediaPlayer::State ms) {
     switch (ms) {
         case QMediaPlayer::State::StoppedState:
-            play(); // starting playing again...
+            //play(); // starting playing again...
             break;
     default:
         break;
