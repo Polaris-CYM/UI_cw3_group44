@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
 
 
     // create the four buttons
-    for ( int i = 0; i <7; i++ ) {
+    for ( int i = 0; i <6; i++ ) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
