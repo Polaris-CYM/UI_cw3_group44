@@ -30,6 +30,7 @@
 #include <QtGui>
 #include <QtWidgets/QScrollArea>
 #include <QVBoxLayout>
+#include <QLabel>
 
 using namespace std;
 
@@ -109,6 +110,7 @@ int main(int argc, char *argv[]) {
 
     // the widget that will show the video
     QVideoWidget *videoWidget = new QVideoWidget;
+    videoWidget->setFixedSize(1920, 1080);
 
     // the QMediaPlayer which controls the playback
     ThePlayer *player = new ThePlayer;
@@ -117,41 +119,47 @@ int main(int argc, char *argv[]) {
     // a row of buttons
     QWidget *buttonWidget = new QWidget();
 
+    QVBoxLayout *right = new QVBoxLayout;
+    right->setSpacing(20);
 
-    QScrollArea *scrollArea = new QScrollArea();
-    scrollArea->setMaximumWidth(240);
-
-    scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
-        scrollArea->setWidgetResizable( true );
-    //    scrollArea->setWidget(buttonWidget);
-
-     QHBoxLayout *top = new QHBoxLayout;
-
-
-    top->addWidget(videoWidget);
-    top->addWidget(scrollArea);
-
+    QGridLayout *windowLayout = new QGridLayout();
 
     // a list of the buttons
     vector<TheButton*> buttons;
-    // the buttons are arranged horizontally
-  //  QVBoxLayout *layout = new QVBoxLayout();
-  //  buttonWidget->setLayout(layout);
 
 
 
     // create the four buttons
-    for ( int i = 0; i < 4; i++ ) {
+    for ( int i = 0; i <7; i++ ) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
-        scrollArea->setWidget(button);
+        button->setCursor(Qt::PointingHandCursor);
+        button->setFixedSize(320, 180);
+        button->setContentsMargins(0,0,0,0);
+        right->addWidget(button);
 
         button->init(&videos.at(i));
 
     }
 
-   // scrollArea->setWidget(button);
+    //buttonWidget->setFixedSize(250, 2000);
+    buttonWidget->setMinimumSize(QSize(250, 1500));
+
+    QScrollArea *scrollArea = new QScrollArea();
+    //scrollArea->setMaximumWidth(500);
+
+    scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
+    scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    scrollArea->setWidgetResizable( true );
+
+    buttonWidget->setLayout(right);
+
+    scrollArea->setWidget(buttonWidget);
+
+    // start from row 0 column 0 and occupy 5 rows and 1 column
+    windowLayout->addWidget(videoWidget, 0, 0, 1, 5);
+    windowLayout->addWidget(scrollArea, 0, 6, 1, 1);
 
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
@@ -161,9 +169,9 @@ int main(int argc, char *argv[]) {
     QWidget window;
 
 
-    window.setLayout(top);
+    window.setLayout(windowLayout);
     window.setWindowTitle("tomeo");
-    window.setMinimumSize(800, 680);
+    window.setMinimumSize(200, 680);
 
     // add the video and the buttons to the top level widget
 
