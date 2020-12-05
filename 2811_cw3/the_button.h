@@ -26,7 +26,7 @@ public:
     TheButtonInfo* info;
 
      TheButton(QWidget *parent) :  QPushButton(parent) {
-         setIconSize(QSize(200,110));
+         setIconSize(QSize(160,90));
          connect(this, SIGNAL(released()), this, SLOT (clicked() )); // if QPushButton clicked...then run clicked() below
     }
 

@@ -110,7 +110,6 @@ int main(int argc, char *argv[]) {
 
     // the widget that will show the video
     QVideoWidget *videoWidget = new QVideoWidget;
-    videoWidget->setFixedSize(1920, 1080);
 
     // the QMediaPlayer which controls the playback
     ThePlayer *player = new ThePlayer;
@@ -119,14 +118,15 @@ int main(int argc, char *argv[]) {
     // a row of buttons
     QWidget *buttonWidget = new QWidget();
 
+    // the layout of scroll area
     QVBoxLayout *right = new QVBoxLayout;
-    right->setSpacing(20);
+    right->setSpacing(10);
 
+    // the layout of the window
     QGridLayout *windowLayout = new QGridLayout();
 
     // a list of the buttons
     vector<TheButton*> buttons;
-
 
 
     // create the four buttons
@@ -134,20 +134,25 @@ int main(int argc, char *argv[]) {
         TheButton *button = new TheButton(buttonWidget);
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )), player, SLOT (jumpTo(TheButtonInfo* ))); // when clicked, tell the player to play.
         buttons.push_back(button);
+        // when the cursor is hovering over the thumbnail, the cursor shape changes to a hand.
         button->setCursor(Qt::PointingHandCursor);
-        button->setFixedSize(320, 180);
+        // set the minimumSize of each thumbnail widget
+        button->setMinimumSize(160, 90);
+        // set the margin of each thumbnail to 0
         button->setContentsMargins(0,0,0,0);
+        // add the buttonWidgets to the QVBoxLayout
         right->addWidget(button);
 
         button->init(&videos.at(i));
 
     }
 
-    //buttonWidget->setFixedSize(250, 2000);
-    buttonWidget->setMinimumSize(QSize(250, 1500));
+    //buttonWidget->setFixedSize(125, 7500);
+    buttonWidget->setMinimumSize(QSize(160, 750));
 
     QScrollArea *scrollArea = new QScrollArea();
     //scrollArea->setMaximumWidth(500);
+    scrollArea->setFixedWidth(220);
 
     scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
     scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
@@ -155,9 +160,10 @@ int main(int argc, char *argv[]) {
 
     buttonWidget->setLayout(right);
 
+    // set buttonWidget to the scrollArea
     scrollArea->setWidget(buttonWidget);
 
-    // start from row 0 column 0 and occupy 5 rows and 1 column
+    // start from row 0 column 0 and occupy 1 row and 5 columns
     windowLayout->addWidget(videoWidget, 0, 0, 1, 5);
     windowLayout->addWidget(scrollArea, 0, 6, 1, 1);
 
@@ -171,11 +177,7 @@ int main(int argc, char *argv[]) {
 
     window.setLayout(windowLayout);
     window.setWindowTitle("tomeo");
-    window.setMinimumSize(200, 680);
-
-    // add the video and the buttons to the top level widget
-
-   // top->addWidget(buttonWidget);
+    window.setMinimumSize(750, 500);
 
     // showtime!
 
