@@ -165,11 +165,18 @@ int main(int argc, char *argv[]) {
 
     // start from row 0 column 0 and occupy 1 row and 5 columns
     windowLayout->addWidget(videoWidget, 0, 0, 1, 5);
-    windowLayout->addWidget(scrollArea, 0, 6, 1, 1);
+
+    windowLayout->addWidget(scrollArea, 0, 6, 0, 1);
 
     // tell the player what buttons and videos are available
     player->setContent(&buttons, & videos);
+    QWidget * p_wdg = new QWidget();
+    QPushButton *pause_play = new QPushButton(p_wdg);
+    pause_play->setText("⏯");
+    pause_play->setCheckable(true);
+    pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
     //scrollArea->setWidget(button);
+    windowLayout->addWidget(p_wdg, 6, 2, 10, 0); // cycle 1
 
     // create the main window and layout
     QWidget window;

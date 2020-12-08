@@ -35,3 +35,12 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
     setMedia( * button -> url);
     play();
 }
+
+void ThePlayer::pausePlay (bool checked) { // cycle 1
+   if(checked) {
+       pause();
+   }
+   else
+   play();
+}
+
