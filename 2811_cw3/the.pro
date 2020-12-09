@@ -10,11 +10,13 @@ CONFIG += c++11
 SOURCES += \
         the_button.cpp \
         the_player.cpp \
-        tomeo.cpp
+        tomeo.cpp \
+        window.cpp
 
 HEADERS += \
     the_button.h \
-    the_player.h
+    the_player.h \
+    window.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
