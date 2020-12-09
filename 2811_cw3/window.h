@@ -33,6 +33,8 @@ private:
     void setPlayerArea();         // set the layout of video player
     void setScrollArea();         // set the layout of scroll area
     void setPauseButton();  // set the layout of the pause/play button
+    void setStopButton();   //set layout of stop button
+    void setMuteButton();   //set layout of mute button
 
     QWidget *window;               // the widget of window
     vector<TheButtonInfo> videos;  // collect all the videos in the folder

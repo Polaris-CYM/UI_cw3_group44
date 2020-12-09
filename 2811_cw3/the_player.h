@@ -26,7 +26,6 @@ private:
 
 public:
     ThePlayer() : QMediaPlayer(NULL) {
-        setVolume(0); // be slightly less annoying
         connect (this, SIGNAL (stateChanged(QMediaPlayer::State)), this, SLOT (playStateChanged(QMediaPlayer::State)) );
 
         mTimer = new QTimer(NULL);
@@ -41,7 +40,6 @@ public:
 private slots:
 
     // change the image and video for one button every one second
-    void shuffle();
 
     void playStateChanged (QMediaPlayer::State ms);
 
@@ -50,6 +48,7 @@ public slots:
     // start playing this ButtonInfo
     void jumpTo (TheButtonInfo* button);
     void pausePlay (bool); // cycle 1
+    void mute(bool); // cycle 2
 };
 
 #endif //CW2_THE_PLAYER_H

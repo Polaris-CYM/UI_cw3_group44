@@ -78,8 +78,9 @@ void Window::setWindowLayout() {
     this->setPlayerArea();
     this->setScrollArea();
     this->setPauseButton();
+    this->setStopButton();
+    this->setMuteButton();
 
-    //setSpacing(5); // set the space betweem rows
 }
 
 void Window::setPlayerArea() {
@@ -129,6 +130,7 @@ void Window::setScrollArea() {
     // tell the player what buttons and videos are available
     player->setContent(buttons, &videos);
 
+
     // create a new scroll area
     scrollArea = new QScrollArea();
     scrollArea->setFixedWidth(220);
@@ -139,6 +141,7 @@ void Window::setScrollArea() {
     // set buttonWidget to the scrollArea
     scrollArea->setWidget(buttonWidget);
     this->addWidget(scrollArea, 0, 6, 10, 1);
+
 }
 
 
@@ -152,6 +155,26 @@ void Window::setPauseButton() {
     pause_play->setCheckable(true);
     pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
     this->addWidget(p_wdg, 4, 2, 6, 3); // cycle 1
+}
+void Window::setMuteButton() {
+    // Mute button widget - cycle 2
+    QWidget * m_wdg = new QWidget();
+    QPushButton *mute_b = new QPushButton(m_wdg);
+    mute_b->setText("🔇");
+    mute_b->setCheckable(true);
+    mute_b->connect(mute_b, SIGNAL(toggled(bool)), player, SLOT (mute(bool)));
+    this->addWidget(m_wdg, 4, 1, 6, 3); // cycle 2
+}
+
+
+void Window::setStopButton() {
+    // Stop widget
+    QWidget * st_wdg = new QWidget();
+    QPushButton *stop = new QPushButton(st_wdg);
+    stop->setText("⏹");
+    stop->setCheckable(false);
+    stop->connect(stop, SIGNAL(clicked()), player, SLOT (stop()));
+    this->addWidget(st_wdg, 4, 3, 6, 3); // cycle 2
 }
 
 

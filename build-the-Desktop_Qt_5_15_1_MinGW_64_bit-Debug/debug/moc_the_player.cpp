@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ThePlayer_t {
     QByteArrayData data[10];
-    char stringdata0[98];
+    char stringdata0[95];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,20 +33,20 @@ struct qt_meta_stringdata_ThePlayer_t {
 static const qt_meta_stringdata_ThePlayer_t qt_meta_stringdata_ThePlayer = {
     {
 QT_MOC_LITERAL(0, 0, 9), // "ThePlayer"
-QT_MOC_LITERAL(1, 10, 7), // "shuffle"
-QT_MOC_LITERAL(2, 18, 0), // ""
-QT_MOC_LITERAL(3, 19, 16), // "playStateChanged"
-QT_MOC_LITERAL(4, 36, 19), // "QMediaPlayer::State"
-QT_MOC_LITERAL(5, 56, 2), // "ms"
-QT_MOC_LITERAL(6, 59, 6), // "jumpTo"
-QT_MOC_LITERAL(7, 66, 14), // "TheButtonInfo*"
-QT_MOC_LITERAL(8, 81, 6), // "button"
-QT_MOC_LITERAL(9, 88, 9) // "pausePlay"
+QT_MOC_LITERAL(1, 10, 16), // "playStateChanged"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 19), // "QMediaPlayer::State"
+QT_MOC_LITERAL(4, 48, 2), // "ms"
+QT_MOC_LITERAL(5, 51, 6), // "jumpTo"
+QT_MOC_LITERAL(6, 58, 14), // "TheButtonInfo*"
+QT_MOC_LITERAL(7, 73, 6), // "button"
+QT_MOC_LITERAL(8, 80, 9), // "pausePlay"
+QT_MOC_LITERAL(9, 90, 4) // "mute"
 
     },
-    "ThePlayer\0shuffle\0\0playStateChanged\0"
+    "ThePlayer\0playStateChanged\0\0"
     "QMediaPlayer::State\0ms\0jumpTo\0"
-    "TheButtonInfo*\0button\0pausePlay"
+    "TheButtonInfo*\0button\0pausePlay\0mute"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,15 +64,15 @@ static const uint qt_meta_data_ThePlayer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x08 /* Private */,
-       3,    1,   35,    2, 0x08 /* Private */,
-       6,    1,   38,    2, 0x0a /* Public */,
-       9,    1,   41,    2, 0x0a /* Public */,
+       1,    1,   34,    2, 0x08 /* Private */,
+       5,    1,   37,    2, 0x0a /* Public */,
+       8,    1,   40,    2, 0x0a /* Public */,
+       9,    1,   43,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 4,    5,
-    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Bool,    2,
 
        0        // eod
@@ -84,16 +84,16 @@ void ThePlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<ThePlayer *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->shuffle(); break;
-        case 1: _t->playStateChanged((*reinterpret_cast< QMediaPlayer::State(*)>(_a[1]))); break;
-        case 2: _t->jumpTo((*reinterpret_cast< TheButtonInfo*(*)>(_a[1]))); break;
-        case 3: _t->pausePlay((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 0: _t->playStateChanged((*reinterpret_cast< QMediaPlayer::State(*)>(_a[1]))); break;
+        case 1: _t->jumpTo((*reinterpret_cast< TheButtonInfo*(*)>(_a[1]))); break;
+        case 2: _t->pausePlay((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 3: _t->mute((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 1:
+        case 0:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
