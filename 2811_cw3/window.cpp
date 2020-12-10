@@ -78,9 +78,11 @@ void Window::setWindowLayout() {
     this->setPlayerArea();
     this->setScrollArea();
     this->setMuteButton();
+    this->setSoundBar();
     this->setPauseButton();
     this->setReplayButton();
     this->setProgressBar();
+
 
 }
 
@@ -141,7 +143,7 @@ void Window::setScrollArea() {
 
 
     scrollArea->setWidget(buttonWidget); // set buttonWidget to the scrollArea
-    this->addWidget(scrollArea, 0, 6, 10, 1); // set the scroll area to the window
+    this->addWidget(scrollArea, 0, 6, 20, 1); // set the scroll area to the window
 
 }
 
@@ -159,7 +161,7 @@ void Window::setPauseButton() {
     pause_play->setText("⏯");
     pause_play->setCheckable(true);
     pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
-    this->addWidget(p_wdg, 6, 2, 6, 3); // set the pause/play button to the window
+    this->addWidget(p_wdg, 6, 2, 9, 1); // set the pause/play button to the window
 }
 
 void Window::setMuteButton() {
@@ -172,7 +174,7 @@ void Window::setMuteButton() {
     mute_b->setText("🔇");
     mute_b->setCheckable(true);
     mute_b->connect(mute_b, SIGNAL(toggled(bool)), player, SLOT (mute(bool)));
-    this->addWidget(m_wdg, 6, 1, 6, 3); // set the mute button to the window
+    this->addWidget(m_wdg, 6, 0, 9, 1); // set the mute button to the window
 }
 
 
@@ -186,7 +188,7 @@ void Window::setReplayButton() {
     replay->setText("🔁");
     replay->setCheckable(false);
     replay->connect(replay, SIGNAL(clicked()), player, SLOT (replay()));
-    this->addWidget(st_wdg, 6, 3, 6, 3); // set the stop button to the window
+    this->addWidget(st_wdg, 6, 4, 9, 1); // set the stop button to the window
 }
 
 void Window::setProgressBar() {
@@ -209,5 +211,18 @@ void Window::setProgressBar() {
     progressBar->setLayout(bar_layout);
 
     this->addWidget(progressBar, 4, 0, 2, 5); // set the progress bar to the window
+}
+
+void Window::setSoundBar() {
+    QWidget *s_wdg = new QWidget();
+    QSlider *sound_bar = new QSlider(Qt::Horizontal, s_wdg);
+    sound_bar->setRange(0, 100);
+    sound_bar->setFixedWidth(100);
+    sound_bar->setValue(100);
+    sound_bar->connect(sound_bar, SIGNAL(valueChanged(int)), player, SLOT(setVolume(int)));
+
+    sound_bar->setCursor(Qt::PointingHandCursor);
+
+    this->addWidget(s_wdg, 14, 0, 3, 2);
 }
 

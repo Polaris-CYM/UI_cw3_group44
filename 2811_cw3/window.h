@@ -36,6 +36,7 @@ private:
     void setReplayButton();         // set layout and event of replay button
     void setMuteButton();         // set layout and event of mute button
     void setProgressBar();        // set the progress bar
+    void setSoundBar();           //set the sound bar
 
     QWidget *window;               // the widget of window
     vector<TheButtonInfo> videos;  // collect all the videos in the folder
