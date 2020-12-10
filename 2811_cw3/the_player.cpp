@@ -54,7 +54,12 @@ void ThePlayer::setPlayPosition(int position) {
     QMediaPlayer::setPosition(qint64(position));
 }
 
+void ThePlayer::setPausePlayButton(QPushButton *btnPausePlay) {
+    pause_play_button = btnPausePlay;
+}
+
 void ThePlayer::replay() {
     stop();
     play();
+    pause_play_button->setChecked(false);
 }

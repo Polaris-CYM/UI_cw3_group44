@@ -77,9 +77,9 @@ void Window::getVideo(int argc, char **argv) {
 void Window::setWindowLayout() {
     this->setPlayerArea();
     this->setScrollArea();
+    this->setMuteButton();
     this->setPauseButton();
     this->setReplayButton();
-    //this->setMuteButton();
     this->setProgressBar();
 
 }
@@ -150,6 +150,9 @@ void Window::setPauseButton() {
     player->setContent(buttons, &videos);
     QWidget *p_wdg = new QWidget();
     pause_play = new QPushButton(p_wdg);
+
+    player->setPausePlayButton(pause_play);
+
     pause_play->setFixedSize(100, 45);
     // the cursor shape changes to a hand when hovering over the pause/play button
     pause_play->setCursor(Qt::PointingHandCursor);

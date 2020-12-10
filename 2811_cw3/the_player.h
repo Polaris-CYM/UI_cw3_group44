@@ -24,6 +24,7 @@ private:
     vector<TheButton*>* buttons;
     QTimer* mTimer;
     long updateCount = 0;
+    QPushButton *pause_play_button;
 
 public:
     ThePlayer() : QMediaPlayer(NULL) {
@@ -37,6 +38,9 @@ public:
 
     // all buttons have been setup, store pointers here
     void setContent(vector<TheButton*>* b, vector<TheButtonInfo>* i);
+
+    // make the state of pause-play button can be changed in ThePlayer
+    void setPausePlayButton(QPushButton *);
 
 private slots:
 
