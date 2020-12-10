@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QMediaPlayer>
 #include "the_button.h"
+#include "progress_bar.h"
 #include <vector>
 #include <QTimer>
 
@@ -49,6 +50,9 @@ public slots:
     void jumpTo (TheButtonInfo* button);
     void pausePlay (bool); // cycle 1
     void mute(bool); // cycle 2
+    void replay();
+    void getTotalTime(qint64); // get the total time of the current video
+    void setPlayPosition(int); // set the playback position of the current video
 };
 
 #endif //CW2_THE_PLAYER_H

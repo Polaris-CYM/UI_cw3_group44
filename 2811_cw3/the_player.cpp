@@ -47,4 +47,14 @@ void ThePlayer::mute (bool checked) { // cycle 2
    setVolume(100);
 }
 
+void ThePlayer::getTotalTime(qint64 total_time) {
+    total_time = this->duration();
+}
+void ThePlayer::setPlayPosition(int position) {
+    QMediaPlayer::setPosition(qint64(position));
+}
 
+void ThePlayer::replay() {
+    stop();
+    play();
+}

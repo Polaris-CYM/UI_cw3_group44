@@ -32,9 +32,10 @@ private:
     vector<TheButtonInfo> getInfoIn(string);  // read in videos and thumbnails to this directory
     void setPlayerArea();         // set the layout of video player
     void setScrollArea();         // set the layout of scroll area
-    void setPauseButton();  // set the layout of the pause/play button
-    void setStopButton();   //set layout of stop button
-    void setMuteButton();   //set layout of mute button
+    void setPauseButton();        // set the layout and event of the pause/play button
+    void setReplayButton();         // set layout and event of replay button
+    void setMuteButton();         // set layout and event of mute button
+    void setProgressBar();        // set the progress bar
 
     QWidget *window;               // the widget of window
     vector<TheButtonInfo> videos;  // collect all the videos in the folder
@@ -42,6 +43,10 @@ private:
     vector<TheButton*> *buttons;   // a list of the buttons
     QScrollArea *scrollArea;       // the scroll area
     QPushButton *pause_play;       // the pause/play button
+    QPushButton *mute_b;           // the mute button
+    QPushButton *replay;             // the replay button
+    Progress_bar *progress_bar;    // the progress bar
+    Time *slider_time;             // the time label of the progress bar
 
 
 public:

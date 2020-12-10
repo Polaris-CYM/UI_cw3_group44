@@ -78,8 +78,9 @@ void Window::setWindowLayout() {
     this->setPlayerArea();
     this->setScrollArea();
     this->setPauseButton();
-    this->setStopButton();
-    this->setMuteButton();
+    this->setReplayButton();
+    //this->setMuteButton();
+    this->setProgressBar();
 
 }
 
@@ -138,44 +139,72 @@ void Window::setScrollArea() {
     scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
     scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
 
-    // set buttonWidget to the scrollArea
-    scrollArea->setWidget(buttonWidget);
-    this->addWidget(scrollArea, 0, 6, 10, 1);
+
+    scrollArea->setWidget(buttonWidget); // set buttonWidget to the scrollArea
+    this->addWidget(scrollArea, 0, 6, 10, 1); // set the scroll area to the window
 
 }
-
 
 void Window::setPauseButton() {
     // tell the player what buttons and videos are available
     player->setContent(buttons, &videos);
-    QWidget * p_wdg = new QWidget();
-    QPushButton *pause_play = new QPushButton(p_wdg);
+    QWidget *p_wdg = new QWidget();
+    pause_play = new QPushButton(p_wdg);
     pause_play->setFixedSize(100, 45);
+    // the cursor shape changes to a hand when hovering over the pause/play button
+    pause_play->setCursor(Qt::PointingHandCursor);
     pause_play->setText("⏯");
     pause_play->setCheckable(true);
     pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
-    this->addWidget(p_wdg, 4, 2, 6, 3); // cycle 1
+    this->addWidget(p_wdg, 6, 2, 6, 3); // set the pause/play button to the window
 }
+
 void Window::setMuteButton() {
     // Mute button widget - cycle 2
     QWidget * m_wdg = new QWidget();
-    QPushButton *mute_b = new QPushButton(m_wdg);
+    mute_b = new QPushButton(m_wdg);
+    mute_b->setFixedSize(100, 45);
+    // the cursor shape changes to a hand when hovering over the mute button
+    mute_b->setCursor(Qt::PointingHandCursor);
     mute_b->setText("🔇");
     mute_b->setCheckable(true);
     mute_b->connect(mute_b, SIGNAL(toggled(bool)), player, SLOT (mute(bool)));
-    this->addWidget(m_wdg, 4, 1, 6, 3); // cycle 2
+    this->addWidget(m_wdg, 6, 1, 6, 3); // set the mute button to the window
 }
 
 
-void Window::setStopButton() {
+void Window::setReplayButton() {
     // Stop widget
     QWidget * st_wdg = new QWidget();
-    QPushButton *stop = new QPushButton(st_wdg);
-    stop->setText("⏹");
-    stop->setCheckable(false);
-    stop->connect(stop, SIGNAL(clicked()), player, SLOT (stop()));
-    this->addWidget(st_wdg, 4, 3, 6, 3); // cycle 2
+    replay = new QPushButton(st_wdg);
+    replay->setFixedSize(100, 45);
+    // the cursor shape changes to a hand when hovering over the stop button
+    replay->setCursor(Qt::PointingHandCursor);
+    replay->setText("🔁");
+    replay->setCheckable(false);
+    replay->connect(replay, SIGNAL(clicked()), player, SLOT (replay()));
+    this->addWidget(st_wdg, 6, 3, 6, 3); // set the stop button to the window
 }
 
+void Window::setProgressBar() {
+    QWidget *progressBar = new QWidget();
+    QHBoxLayout *bar_layout = new QHBoxLayout(); // create a new layout for progress bar
 
+    // create the progress bar and time label
+    progress_bar = new Progress_bar();
+    slider_time = new Time();
+
+    connect(player, SIGNAL(durationChanged(qint64)), progress_bar, SLOT(setBarRange(qint64)));
+    connect(player, SIGNAL(durationChanged(qint64)), slider_time, SLOT(setTotalTime(qint64)));
+    connect(progress_bar, SIGNAL(valueChanged(int)), player, SLOT(setPlayPosition(int)));
+    connect(player, SIGNAL(positionChanged(qint64)), progress_bar, SLOT(setCurrentValue(qint64)));
+    connect(player, SIGNAL(positionChanged(qint64)), slider_time, SLOT(setCurrentTime(qint64)));
+
+    progress_bar->setCursor(Qt::PointingHandCursor);
+    bar_layout->addWidget(progress_bar);
+    bar_layout->addWidget(slider_time);
+    progressBar->setLayout(bar_layout);
+
+    this->addWidget(progressBar, 4, 0, 2, 5); // set the progress bar to the window
+}
 
