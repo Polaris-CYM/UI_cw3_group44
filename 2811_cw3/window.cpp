@@ -168,6 +168,9 @@ void Window::setMuteButton() {
     // Mute button widget - cycle 2
     QWidget * m_wdg = new QWidget();
     mute_b = new QPushButton(m_wdg);
+
+    player->setMuteButton(mute_b);
+
     mute_b->setFixedSize(100, 45);
     // the cursor shape changes to a hand when hovering over the mute button
     mute_b->setCursor(Qt::PointingHandCursor);
@@ -215,11 +218,12 @@ void Window::setProgressBar() {
 
 void Window::setSoundBar() {
     QWidget *s_wdg = new QWidget();
-    QSlider *sound_bar = new QSlider(Qt::Horizontal, s_wdg);
+    sound_bar = new QSlider(Qt::Horizontal, s_wdg);
+    player->setSoundBar(sound_bar);
     sound_bar->setRange(0, 100);
     sound_bar->setFixedWidth(100);
     sound_bar->setValue(100);
-    sound_bar->connect(sound_bar, SIGNAL(valueChanged(int)), player, SLOT(setVolume(int)));
+    sound_bar->connect(sound_bar, SIGNAL(valueChanged(int)), player, SLOT(soundBar(int)));
 
     sound_bar->setCursor(Qt::PointingHandCursor);
 

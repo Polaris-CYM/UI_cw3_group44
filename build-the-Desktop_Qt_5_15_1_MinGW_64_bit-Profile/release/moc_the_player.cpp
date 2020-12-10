@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ThePlayer_t {
-    QByteArrayData data[13];
-    char stringdata0[131];
+    QByteArrayData data[14];
+    char stringdata0[140];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,14 +43,16 @@ QT_MOC_LITERAL(7, 73, 6), // "button"
 QT_MOC_LITERAL(8, 80, 9), // "pausePlay"
 QT_MOC_LITERAL(9, 90, 4), // "mute"
 QT_MOC_LITERAL(10, 95, 6), // "replay"
-QT_MOC_LITERAL(11, 102, 12), // "getTotalTime"
-QT_MOC_LITERAL(12, 115, 15) // "setPlayPosition"
+QT_MOC_LITERAL(11, 102, 8), // "soundBar"
+QT_MOC_LITERAL(12, 111, 12), // "getTotalTime"
+QT_MOC_LITERAL(13, 124, 15) // "setPlayPosition"
 
     },
     "ThePlayer\0playStateChanged\0\0"
     "QMediaPlayer::State\0ms\0jumpTo\0"
     "TheButtonInfo*\0button\0pausePlay\0mute\0"
-    "replay\0getTotalTime\0setPlayPosition"
+    "replay\0soundBar\0getTotalTime\0"
+    "setPlayPosition"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +62,7 @@ static const uint qt_meta_data_ThePlayer[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,13 +70,14 @@ static const uint qt_meta_data_ThePlayer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   49,    2, 0x08 /* Private */,
-       5,    1,   52,    2, 0x0a /* Public */,
-       8,    1,   55,    2, 0x0a /* Public */,
-       9,    1,   58,    2, 0x0a /* Public */,
-      10,    0,   61,    2, 0x0a /* Public */,
-      11,    1,   62,    2, 0x0a /* Public */,
-      12,    1,   65,    2, 0x0a /* Public */,
+       1,    1,   54,    2, 0x08 /* Private */,
+       5,    1,   57,    2, 0x0a /* Public */,
+       8,    1,   60,    2, 0x0a /* Public */,
+       9,    1,   63,    2, 0x0a /* Public */,
+      10,    0,   66,    2, 0x0a /* Public */,
+      11,    1,   67,    2, 0x0a /* Public */,
+      12,    1,   70,    2, 0x0a /* Public */,
+      13,    1,   73,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -82,6 +85,7 @@ static const uint qt_meta_data_ThePlayer[] = {
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void, QMetaType::LongLong,    2,
     QMetaType::Void, QMetaType::Int,    2,
 
@@ -99,8 +103,9 @@ void ThePlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 2: _t->pausePlay((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 3: _t->mute((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 4: _t->replay(); break;
-        case 5: _t->getTotalTime((*reinterpret_cast< qint64(*)>(_a[1]))); break;
-        case 6: _t->setPlayPosition((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->soundBar((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->getTotalTime((*reinterpret_cast< qint64(*)>(_a[1]))); break;
+        case 7: _t->setPlayPosition((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -146,13 +151,13 @@ int ThePlayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

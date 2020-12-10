@@ -35,16 +35,20 @@ void ThePlayer::pausePlay (bool checked) { // cycle 1
    if(checked) {
        pause();
    }
-   else
-   play();
+   else {
+       play();
+   }
 }
 
 void ThePlayer::mute (bool checked) { // cycle 2
    if(checked) {
        setVolume(0);
+       sound_bar->setValue(0);
    }
-   else
-   setVolume(100);
+   else {
+       setVolume(100);
+       sound_bar->setValue(100);
+   }
 }
 
 void ThePlayer::getTotalTime(qint64 total_time) {
@@ -63,3 +67,22 @@ void ThePlayer::replay() {
     play();
     pause_play_button->setChecked(false);
 }
+
+void ThePlayer::setSoundBar(QSlider *sound_Bar) {
+    sound_bar = sound_Bar;
+}
+
+void ThePlayer::setMuteButton(QPushButton *btnMute) {
+    mute_button = btnMute;
+}
+
+void ThePlayer::soundBar(int value) {
+    setVolume(value);
+    if(sound_bar->value()==0) {
+        mute_button->setChecked(true);
+    }
+    else {
+        mute_button->setChecked(false);
+    }
+}
+

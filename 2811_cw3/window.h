@@ -43,7 +43,6 @@ private:
     ThePlayer *player;             // the QMediaPlayer which controls the playback
     vector<TheButton*> *buttons;   // a list of the buttons
     QScrollArea *scrollArea;       // the scroll area
-    QPushButton *mute_b;           // the mute button
     QPushButton *replay;             // the replay button
     Progress_bar *progress_bar;    // the progress bar
     Time *slider_time;             // the time label of the progress bar
@@ -57,6 +56,8 @@ public:
     ~Window() {}
 
     QPushButton *pause_play;       // the pause/play button
+    QSlider *sound_bar;            // the sound bar
+    QPushButton *mute_b;           // the mute button
 
     void getVideo(int argc, char *argv[]);  // get all the videos in the "videos" folder
     void setWindowLayout();  // set the layout of the widget in the window

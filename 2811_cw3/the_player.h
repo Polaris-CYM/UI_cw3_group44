@@ -25,6 +25,8 @@ private:
     QTimer* mTimer;
     long updateCount = 0;
     QPushButton *pause_play_button;
+    QSlider *sound_bar;
+    QPushButton *mute_button;
 
 public:
     ThePlayer() : QMediaPlayer(NULL) {
@@ -41,6 +43,8 @@ public:
 
     // make the state of pause-play button can be changed in ThePlayer
     void setPausePlayButton(QPushButton *);
+    void setSoundBar(QSlider *);
+    void setMuteButton(QPushButton *);
 
 private slots:
 
@@ -54,7 +58,8 @@ public slots:
     void jumpTo (TheButtonInfo* button);
     void pausePlay (bool); // cycle 1
     void mute(bool); // cycle 2
-    void replay();
+    void replay(); // replay the current video
+    void soundBar(int); // event when drag the sound bar
     void getTotalTime(qint64); // get the total time of the current video
     void setPlayPosition(int); // set the playback position of the current video
 };
