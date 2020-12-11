@@ -38,6 +38,13 @@ vector<TheButtonInfo> Window::getInfoIn (string loc) {
             else
                 qDebug() << "warning: skipping video because I couldn't find thumbnail "
                          << thumb << endl;
+
+            QStringList strPath = f.split("/"); // get the path of the video
+            QString videoFullName = strPath[strPath.length()-1]; // get the name + extension
+            QStringList strSplit = videoFullName.split("."); // Separate video name from the extension
+            QString videoName = strSplit[0]; // get the name of the video
+
+            video_names.push_back(videoName); // save all video names
         }
     }
 
@@ -112,7 +119,23 @@ void Window::setScrollArea() {
 
     // create the buttons
     for ( int i = 0; i <6; i++ ) {
-        TheButton *button = new TheButton(buttonWidget);
+        // set layout for each thumbnail and its corresponding video's name
+        QVBoxLayout *thumb_layout = new QVBoxLayout();
+        // set a widget for one thumbnail + its name
+        QWidget *thumb_widget = new QWidget(buttonWidget);
+        // set the thumbnail button
+        TheButton *button = new TheButton(thumb_widget);
+        // set title (name) of each thumbnail
+        QLabel *title = new QLabel(video_names.at(i).toStdString().data());
+        // centering the title according to each thumbnail
+        title->setAlignment(Qt::AlignCenter);
+
+        // set the font size of the title
+        QFont ft;
+        ft.setPointSize(12);
+        title->setFont(ft);
+
+
         // when clicked, tell the player to play.
         button->connect(button, SIGNAL(jumpTo(TheButtonInfo* )),
                         player, SLOT (jumpTo(TheButtonInfo* )));
@@ -127,6 +150,13 @@ void Window::setScrollArea() {
         right->addWidget(button);
 
         button->init(&videos.at(i));
+
+        // add the thumbnail and title to the QVBoxLayout
+        thumb_layout->addWidget(button);
+        thumb_layout->addWidget(title);
+
+        thumb_widget->setLayout(thumb_layout);
+        right->addWidget(thumb_widget);
 
     }
 
@@ -201,6 +231,11 @@ void Window::setProgressBar() {
     // create the progress bar and time label
     progress_bar = new Progress_bar();
     slider_time = new Time();
+
+    // set font size of the time label
+    QFont font;
+    font.setPointSize(14);
+    slider_time->setFont(font);
 
     connect(player, SIGNAL(durationChanged(qint64)), progress_bar, SLOT(setBarRange(qint64)));
     connect(player, SIGNAL(durationChanged(qint64)), slider_time, SLOT(setTotalTime(qint64)));

@@ -43,9 +43,11 @@ private:
     ThePlayer *player;             // the QMediaPlayer which controls the playback
     vector<TheButton*> *buttons;   // a list of the buttons
     QScrollArea *scrollArea;       // the scroll area
-    QPushButton *replay;             // the replay button
+    QPushButton *replay;           // the replay button
     Progress_bar *progress_bar;    // the progress bar
     Time *slider_time;             // the time label of the progress bar
+    vector<QString> video_names;   // save the names of all videos
+
 
 
 public:

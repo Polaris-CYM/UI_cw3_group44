@@ -18,6 +18,7 @@ void Time::setCurrentTime(qint64 current_time) {
     int t_time = int(total/1000);
     QTime current_formatted((seconds/3600)%60, (seconds/60)%60, seconds%60); // hour, min, sec
     QTime total_formatted((t_time/3600)%60, (t_time/60)%60, t_time%60); // hour, min, sec
+
     QString format = "mm:ss";
     if(t_time > 3600)
         format = "hh:mm:ss";
