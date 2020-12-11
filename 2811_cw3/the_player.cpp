@@ -31,29 +31,30 @@ void ThePlayer::jumpTo (TheButtonInfo* button) {
     play();
 }
 
-void ThePlayer::pausePlay (bool checked) { // cycle 1
-   if(checked) {
+void ThePlayer::pausePlay (bool checked) {
+    if(checked) { // if the button is checked, the video should be paused
        pause();
    }
-   else {
+   else { // else the video should be played
        play();
    }
 }
 
-void ThePlayer::mute (bool checked) { // cycle 2
-   if(checked) {
+void ThePlayer::mute (bool checked) {
+   if(checked) { // if the mute button is checked, set the volumn and value of the sound-bar to 0
        setVolume(0);
        sound_bar->setValue(0);
    }
-   else {
+   else { //else set the volumn and the value of the sound-bar to 100
        setVolume(100);
        sound_bar->setValue(100);
    }
 }
 
 void ThePlayer::getTotalTime(qint64 total_time) {
-    total_time = this->duration();
+    total_time = this->duration(); // get the duration of the currect video
 }
+
 void ThePlayer::setPlayPosition(int position) {
     QMediaPlayer::setPosition(qint64(position));
 }
@@ -87,13 +88,13 @@ void ThePlayer::soundBar(int value) {
 }
 
 void ThePlayer::toPrevious() {
-    current_index = (current_index - 1) % buttons->size();
-    setMedia( * infos->at(current_index).url);
+    current_index = (current_index - 1) % buttons->size(); // locate to the previous video
+    setMedia(*infos->at(current_index).url);
     play();
 }
 
 void ThePlayer::toNext() {
-    current_index = (current_index + 1) % buttons->size();
-    setMedia( * infos->at(current_index).url);
+    current_index = (current_index + 1) % buttons->size(); // locate to the next video
+    setMedia(*infos->at(current_index).url);
     play();
 }

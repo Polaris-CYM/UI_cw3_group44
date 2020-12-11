@@ -32,7 +32,7 @@ vector<TheButtonInfo> Window::getInfoIn (string loc) {
                         out . push_back(TheButtonInfo( url , ico  ) );
                     }
                     else
-                        qDebug() << "warning: skipping video because I couldn't process thumbnail "
+                        qDebug() << "warning: skipping video because I couldn't process thumbnail"
                                  << thumb << endl;
             }
             else
@@ -41,7 +41,7 @@ vector<TheButtonInfo> Window::getInfoIn (string loc) {
 
             QStringList strPath = f.split("/"); // get the path of the video
             QString videoFullName = strPath[strPath.length()-1]; // get the name + extension
-            QStringList strSplit = videoFullName.split("."); // Separate video name from the extension
+            QStringList strSplit = videoFullName.split("."); // Separate video name from extension
             QString videoName = strSplit[0]; // get the name of the video
 
             video_names.push_back(videoName); // save all video names
@@ -190,11 +190,13 @@ void Window::setPauseButton() {
     pause_play->setCursor(Qt::PointingHandCursor);
     pause_play->setText("⏯");
     pause_play->setCheckable(true);
-    pause_play->setFixedHeight(40);
-    pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
+    pause_play->setFixedHeight(40);   
+
     QFont font = pause_play->font();
     font.setPointSize(16);
     pause_play->setFont(font);
+
+    pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
     this->addWidget(p_wdg, 6, 9, 9, 3); // set the pause/play button to the window
 }
 
@@ -211,9 +213,11 @@ void Window::setMuteButton() {
     mute_b->setText("🔇");
     mute_b->setCheckable(true);
     mute_b->setFixedHeight(40);
+
     QFont font = mute_b->font();
     font.setPointSize(16);
     mute_b->setFont(font);
+
     mute_b->connect(mute_b, SIGNAL(toggled(bool)), player, SLOT (mute(bool)));
     this->addWidget(m_wdg, 6, 1, 9, 2); // set the mute button to the window
 }
@@ -229,9 +233,11 @@ void Window::setReplayButton() {
     replay->setText("🔄");
     replay->setCheckable(false);
     replay->setFixedHeight(40);
+
     QFont font = replay->font();
     font.setPointSize(16);
     replay->setFont(font);
+
     replay->connect(replay, SIGNAL(clicked()), player, SLOT (replay()));
     this->addWidget(st_wdg, 6, 17, 9, 3); // set the stop button to the window
 }
@@ -285,9 +291,11 @@ void Window::setPreviousButton() {
     previous->setCursor(Qt::PointingHandCursor);
     previous->setText("⏮️");
     previous->setFixedHeight(40);
+
     QFont font = previous->font();
     font.setPointSize(16);
     previous->setFont(font);
+
     connect(previous, SIGNAL(clicked()), player, SLOT(toPrevious()));
     this->addWidget(pre_wdg, 6, 5, 9, 3);
 }
@@ -300,9 +308,11 @@ void Window::setNextButton() {
     next->setCursor(Qt::PointingHandCursor);
     next->setText("⏭");
     next->setFixedHeight(40);
+
     QFont font = next->font();
     font.setPointSize(16);
     next->setFont(font);
+
     connect(next, SIGNAL(clicked()), player, SLOT(toNext()));
     this->addWidget(next_wdg, 6, 13, 9, 3);
 }
