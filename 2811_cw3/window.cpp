@@ -89,8 +89,8 @@ void Window::setWindowLayout() {
     this->setPauseButton();
     this->setReplayButton();
     this->setProgressBar();
-
-
+    this->setPreviousButton();
+    this->setNextButton();
 }
 
 void Window::setPlayerArea() {
@@ -101,7 +101,7 @@ void Window::setPlayerArea() {
     player->setVideoOutput(videoWidget);
 
     // start from row 0 column 0 and occupy 1 row and 5 columns
-    this->addWidget(videoWidget, 0, 0, 4, 5);
+    this->addWidget(videoWidget, 0, 0, 4, 20);
 }
 
 void Window::setScrollArea() {
@@ -173,7 +173,7 @@ void Window::setScrollArea() {
 
 
     scrollArea->setWidget(buttonWidget); // set buttonWidget to the scrollArea
-    this->addWidget(scrollArea, 0, 6, 20, 1); // set the scroll area to the window
+    this->addWidget(scrollArea, 0, 21, 13, 1); // set the scroll area to the window
 
 }
 
@@ -185,13 +185,13 @@ void Window::setPauseButton() {
 
     player->setPausePlayButton(pause_play);
 
-    pause_play->setFixedSize(100, 45);
+    pause_play->setToolTip("pause/play the video"); // show tips on mouse hover
     // the cursor shape changes to a hand when hovering over the pause/play button
     pause_play->setCursor(Qt::PointingHandCursor);
     pause_play->setText("⏯");
     pause_play->setCheckable(true);
     pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
-    this->addWidget(p_wdg, 6, 2, 9, 1); // set the pause/play button to the window
+    this->addWidget(p_wdg, 6, 9, 9, 3); // set the pause/play button to the window
 }
 
 void Window::setMuteButton() {
@@ -200,14 +200,14 @@ void Window::setMuteButton() {
     mute_b = new QPushButton(m_wdg);
 
     player->setMuteButton(mute_b);
-
-    mute_b->setFixedSize(100, 45);
+    mute_b->setFixedWidth(90);
+    mute_b->setToolTip("mute the video"); // show tips on mouse hover
     // the cursor shape changes to a hand when hovering over the mute button
     mute_b->setCursor(Qt::PointingHandCursor);
     mute_b->setText("🔇");
     mute_b->setCheckable(true);
     mute_b->connect(mute_b, SIGNAL(toggled(bool)), player, SLOT (mute(bool)));
-    this->addWidget(m_wdg, 6, 0, 9, 1); // set the mute button to the window
+    this->addWidget(m_wdg, 6, 1, 9, 2); // set the mute button to the window
 }
 
 
@@ -215,13 +215,13 @@ void Window::setReplayButton() {
     // Stop widget
     QWidget * st_wdg = new QWidget();
     replay = new QPushButton(st_wdg);
-    replay->setFixedSize(100, 45);
+    replay->setToolTip("replay the current video"); // show tips on mouse hover
     // the cursor shape changes to a hand when hovering over the stop button
     replay->setCursor(Qt::PointingHandCursor);
-    replay->setText("🔁");
+    replay->setText("🔄");
     replay->setCheckable(false);
     replay->connect(replay, SIGNAL(clicked()), player, SLOT (replay()));
-    this->addWidget(st_wdg, 6, 4, 9, 1); // set the stop button to the window
+    this->addWidget(st_wdg, 6, 17, 9, 3); // set the stop button to the window
 }
 
 void Window::setProgressBar() {
@@ -248,20 +248,41 @@ void Window::setProgressBar() {
     bar_layout->addWidget(slider_time);
     progressBar->setLayout(bar_layout);
 
-    this->addWidget(progressBar, 4, 0, 2, 5); // set the progress bar to the window
+    this->addWidget(progressBar, 4, 0, 2, 20); // set the progress bar to the window
 }
 
 void Window::setSoundBar() {
     QWidget *s_wdg = new QWidget();
-    sound_bar = new QSlider(Qt::Horizontal, s_wdg);
+    sound_bar = new QSlider(Qt::Vertical, s_wdg);
     player->setSoundBar(sound_bar);
+    sound_bar->setToolTip("change the volume"); // show tips on mouse hover
     sound_bar->setRange(0, 100);
-    sound_bar->setFixedWidth(100);
     sound_bar->setValue(100);
     sound_bar->connect(sound_bar, SIGNAL(valueChanged(int)), player, SLOT(soundBar(int)));
-
+    sound_bar->setFixedHeight(60);
     sound_bar->setCursor(Qt::PointingHandCursor);
 
-    this->addWidget(s_wdg, 14, 0, 3, 2);
+    this->addWidget(s_wdg, 6, 3, 9, 1);
 }
 
+void Window::setPreviousButton() {
+    QWidget *pre_wdg = new QWidget();
+    previous = new QPushButton(pre_wdg); // create previous button
+    previous->setToolTip("Jump to the previous video"); // show tips on mouse hover
+    // the cursor shape changes to a hand when hovering over the previous button
+    previous->setCursor(Qt::PointingHandCursor);
+    previous->setText("⏮️");
+    connect(previous, SIGNAL(clicked()), player, SLOT(toPrevious()));
+    this->addWidget(pre_wdg, 6, 5, 9, 3);
+}
+
+void Window::setNextButton() {
+    QWidget *next_wdg = new QWidget();
+    next = new QPushButton(next_wdg); // create next button
+    next->setToolTip("Jump to the next video"); // show tips on mouse hover
+    // the cursor shape changes to a hand when hovering over the next button
+    next->setCursor(Qt::PointingHandCursor);
+    next->setText("⏭");
+    connect(next, SIGNAL(clicked()), player, SLOT(toNext()));
+    this->addWidget(next_wdg, 6, 13, 9, 3);
+}

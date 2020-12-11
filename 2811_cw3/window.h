@@ -33,10 +33,12 @@ private:
     void setPlayerArea();         // set the layout of video player
     void setScrollArea();         // set the layout of scroll area
     void setPauseButton();        // set the layout and event of the pause/play button
-    void setReplayButton();         // set layout and event of replay button
+    void setReplayButton();       // set layout and event of replay button
     void setMuteButton();         // set layout and event of mute button
     void setProgressBar();        // set the progress bar
-    void setSoundBar();           //set the sound bar
+    void setSoundBar();           // set the sound bar
+    void setPreviousButton();     // set the button to switch to the previous video
+    void setNextButton();         // set the button to switch to the next video
 
     QWidget *window;               // the widget of window
     vector<TheButtonInfo> videos;  // collect all the videos in the folder
@@ -47,7 +49,8 @@ private:
     Progress_bar *progress_bar;    // the progress bar
     Time *slider_time;             // the time label of the progress bar
     vector<QString> video_names;   // save the names of all videos
-
+    QPushButton *previous;         // the button to go to the previous video
+    QPushButton *next;             // the button to go to the next video
 
 
 public:

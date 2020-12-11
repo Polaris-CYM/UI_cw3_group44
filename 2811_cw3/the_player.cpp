@@ -86,3 +86,14 @@ void ThePlayer::soundBar(int value) {
     }
 }
 
+void ThePlayer::toPrevious() {
+    current_index = (current_index - 1) % buttons->size();
+    setMedia( * infos->at(current_index).url);
+    play();
+}
+
+void ThePlayer::toNext() {
+    current_index = (current_index + 1) % buttons->size();
+    setMedia( * infos->at(current_index).url);
+    play();
+}
