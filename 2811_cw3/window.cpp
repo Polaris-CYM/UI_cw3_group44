@@ -190,7 +190,11 @@ void Window::setPauseButton() {
     pause_play->setCursor(Qt::PointingHandCursor);
     pause_play->setText("⏯");
     pause_play->setCheckable(true);
+    pause_play->setFixedHeight(40);
     pause_play->connect(pause_play, SIGNAL(toggled(bool)), player, SLOT (pausePlay(bool)));
+    QFont font = pause_play->font();
+    font.setPointSize(16);
+    pause_play->setFont(font);
     this->addWidget(p_wdg, 6, 9, 9, 3); // set the pause/play button to the window
 }
 
@@ -206,6 +210,10 @@ void Window::setMuteButton() {
     mute_b->setCursor(Qt::PointingHandCursor);
     mute_b->setText("🔇");
     mute_b->setCheckable(true);
+    mute_b->setFixedHeight(40);
+    QFont font = mute_b->font();
+    font.setPointSize(16);
+    mute_b->setFont(font);
     mute_b->connect(mute_b, SIGNAL(toggled(bool)), player, SLOT (mute(bool)));
     this->addWidget(m_wdg, 6, 1, 9, 2); // set the mute button to the window
 }
@@ -220,6 +228,10 @@ void Window::setReplayButton() {
     replay->setCursor(Qt::PointingHandCursor);
     replay->setText("🔄");
     replay->setCheckable(false);
+    replay->setFixedHeight(40);
+    QFont font = replay->font();
+    font.setPointSize(16);
+    replay->setFont(font);
     replay->connect(replay, SIGNAL(clicked()), player, SLOT (replay()));
     this->addWidget(st_wdg, 6, 17, 9, 3); // set the stop button to the window
 }
@@ -259,10 +271,10 @@ void Window::setSoundBar() {
     sound_bar->setRange(0, 100);
     sound_bar->setValue(100);
     sound_bar->connect(sound_bar, SIGNAL(valueChanged(int)), player, SLOT(soundBar(int)));
-    sound_bar->setFixedHeight(60);
+    sound_bar->setFixedHeight(50);
     sound_bar->setCursor(Qt::PointingHandCursor);
 
-    this->addWidget(s_wdg, 6, 3, 9, 1);
+    this->addWidget(s_wdg, 6, 3, 10, 1);
 }
 
 void Window::setPreviousButton() {
@@ -272,6 +284,10 @@ void Window::setPreviousButton() {
     // the cursor shape changes to a hand when hovering over the previous button
     previous->setCursor(Qt::PointingHandCursor);
     previous->setText("⏮️");
+    previous->setFixedHeight(40);
+    QFont font = previous->font();
+    font.setPointSize(16);
+    previous->setFont(font);
     connect(previous, SIGNAL(clicked()), player, SLOT(toPrevious()));
     this->addWidget(pre_wdg, 6, 5, 9, 3);
 }
@@ -283,6 +299,10 @@ void Window::setNextButton() {
     // the cursor shape changes to a hand when hovering over the next button
     next->setCursor(Qt::PointingHandCursor);
     next->setText("⏭");
+    next->setFixedHeight(40);
+    QFont font = next->font();
+    font.setPointSize(16);
+    next->setFont(font);
     connect(next, SIGNAL(clicked()), player, SLOT(toNext()));
     this->addWidget(next_wdg, 6, 13, 9, 3);
 }
