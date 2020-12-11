@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.1, 2020-12-11T13:43:01. -->
+<!-- Written by QtCreator 4.13.1, 2020-12-11T13:46:49. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -325,10 +325,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">the2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/STUDY/UI_cw3_group44/2811_cw3/the.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/STUDY/UI_cw3_group44/2811_cw3/the.pro</value>
-    <value type="QString" key="RunConfiguration.Arguments">&quot;D:\STUDY\UI_cw3_group44\videos&quot;</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/STUDY/Teamwork/UI_cw3_group44/2811_cw3/the.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/STUDY/Teamwork/UI_cw3_group44/2811_cw3/the.pro</value>
+    <value type="QString" key="RunConfiguration.Arguments">&quot;D:\STUDY\Teamwork\UI_cw3_group44\videos&quot;</value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
@@ -337,7 +336,7 @@
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory">D:/STUDY/UI_cw3_group44/build-the-Desktop_Qt_5_15_1_MinGW_64_bit-Profile</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/STUDY/Teamwork/UI_cw3_group44/build-the-Desktop_Qt_5_15_1_MinGW_64_bit-Profile</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
